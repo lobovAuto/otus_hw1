@@ -1,0 +1,13 @@
+name: 'build the project'
+on:
+  push:
+  pull-request:
+jobs:
+  test-job:
+    runs-on: ubuntu-16.04
+    steps:
+    - name: 'is cmake'
+      run: cmake --version
+
+    - name: 'is gcc'
+      run: gcc --version
