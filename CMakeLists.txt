@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.22)
 project(homework1)
 
+if(DEFINED ENV{GITHUB_RUN_NUMBER})
+  set(CMAKE_BUILD_NUMBER $ENV{GITHUB_RUN_NUMBER})
+else()
+  set(CMAKE_BUILD_NUMBER 0)
+endif()
+
 enable_language(CXX)
 
 set (TARGET hw1)
-#set(CMAKE_BUILD_NUMBER 3)
 set(BUILD_NUMBER TRUE)
 
 configure_file(config.hpp.in config.hpp)
@@ -16,4 +21,11 @@ target_include_directories(${TARGET} PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-message("hello ${CMAKE_BUILD_NUMBER}")
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${CMAKE_BUILD_NUMBER}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
