@@ -1,2 +1,2 @@
 #pragma once
-#cmakedefine BUILD_NUMBER "$ENV{USER}"
+#cmakedefine BUILD_NUMBER @CMAKE_BUILD_NUMBER@

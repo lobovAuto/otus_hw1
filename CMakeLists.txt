@@ -15,5 +15,3 @@ add_executable(${TARGET}
 target_include_directories(${TARGET} PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
 )
-
-message("hello ${CMAKE_BUILD_NUMBER}")
